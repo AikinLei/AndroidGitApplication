@@ -1,0 +1,107 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.example.admin.custmerviewapplication"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+
+        debug {
+            storeFile file("textKeystore.jks")
+            storePassword "123456z"
+            keyAlias "testKeystore"
+            keyPassword "123456z"
+        }
+
+        myConfig {
+            storeFile file("textKeystore.jks")
+            storePassword "123456z"
+            keyAlias "testKeystore"
+            keyPassword "123456z"
+        }
+    }
+
+    buildTypes {
+        //调试版本
+        debug {
+            //签名配置
+            signingConfig signingConfigs.debug
+//            manifestPlaceholders = [AMAP_KEY: "09fd4efd3e28e9bf1f449ecec7d34bfe"]
+
+            //混淆配置
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+
+            signingConfig signingConfigs.myConfig
+//            manifestPlaceholders = [AMAP_KEY: "09fd4efd3e28e9bf1f449ecec7d34bfe"]
+
+            // 移除无用的resource文件
+            shrinkResources true
+
+            //混淆配置
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //产品风味:这里作为渠道配置
+    productFlavors {
+        main {}
+        xiaomi {}
+        _360 {}
+        anzhi {}
+        yingyongbao {}
+        wandoujia {}
+//        _91 {}
+//        baidu {}
+//        huawei {}
+//        liqu {}
+//        wo_market {}
+
+    }
+
+
+    productFlavors.all {
+        flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+            flavor.versionCode = 1  //版本代码
+            flavor.versionName = "1.0"//版本号
+
+            //动态修改打出的apk的名字
+            //格式为appName-渠道名-建造类型(生产或测试)-v版本.apk
+            //例如jincihaoche-_360-release-v1.1.apk
+            android.applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    output.outputFile = new File(
+                            output.outputFile.parent,
+                            "testMoreFlavor-" + variant.productFlavors[0].name + "-" + buildType.name + "-v" +
+                                    flavor.versionName + ".apk");
+                }
+            }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
+}

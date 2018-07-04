@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.admin.custmerviewapplication.ViewLocationActivity">
+
+    <com.example.admin.view.HorizontalView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#fcc">
+
+        <ListView
+            android:id="@+id/lv_one"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="#cc0"></ListView>
+
+        <ListView
+            android:id="@+id/lv_two"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="#f0c"></ListView>
+    </com.example.admin.view.HorizontalView>
+
+    <com.example.admin.view.SliderBar
+        android:layout_width="40dp"
+        android:layout_height="match_parent"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="20dp"-->
+    <!--android:background="#ff0"-->
+    <!--android:padding="40dp">-->
+
+
+    <!--<com.example.admin.view.CustomerTextView-->
+    <!--android:id="@+id/text_location"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:background="#fcc"-->
+    <!--android:gravity="center"-->
+    <!--android:text="测试view的坐标系"-->
+    <!--app:usColor="#f00"/>-->
+    <!--</LinearLayout>-->
+
+</LinearLayout>
