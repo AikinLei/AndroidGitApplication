@@ -25,6 +25,8 @@ import com.example.admin.custmerviewapplication.R;
 public class CustomerTextView extends AppCompatTextView {
     private int mLastX;
     private int mLastY;
+    private int versionCode = 1;
+    private int devNum = 2;
 
     private Paint mPaint = new Paint();
     private int mColor;
