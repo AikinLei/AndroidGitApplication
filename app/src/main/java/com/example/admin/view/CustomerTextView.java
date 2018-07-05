@@ -27,6 +27,8 @@ public class CustomerTextView extends AppCompatTextView {
     private int mLastY;
     private int versionCode = 1;
     private int devNum = 2;
+    private int devNum1 = 3;
+
 
     private Paint mPaint = new Paint();
     private int mColor;
